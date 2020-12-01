@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/projectdiscovery/naabu/v2/pkg/ipranger"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
+	"github.com/003random/naabu/v2/pkg/ipranger"
+	"github.com/003random/naabu/v2/pkg/scan"
 )
 
 func parseExcludedIps(options *Options, scanner *scan.Scanner) error {

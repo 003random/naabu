@@ -7,13 +7,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/003random/naabu/v2/pkg/ipranger"
+	"github.com/003random/naabu/v2/pkg/kv"
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
 	"github.com/phayes/freeport"
 	"github.com/projectdiscovery/cdncheck"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/naabu/v2/pkg/ipranger"
-	"github.com/projectdiscovery/naabu/v2/pkg/kv"
 	"golang.org/x/net/icmp"
 	"golang.org/x/net/ipv4"
 )

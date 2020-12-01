@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/003random/naabu/v2/pkg/ipranger"
+	"github.com/003random/naabu/v2/pkg/scan"
 	dnsprobe "github.com/projectdiscovery/dnsprobe/lib"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/mapcidr"
-	"github.com/projectdiscovery/naabu/v2/pkg/ipranger"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
 	"github.com/remeh/sizedwaitgroup"
 	"go.uber.org/ratelimit"
 )
@@ -47,7 +47,7 @@ func NewRunner(options *Options) (*Runner, error) {
 		Rate:    options.Rate,
 		Debug:   options.Debug,
 		Root:    isRoot(),
-		Cdn:     !options.ExcludeCDN,
+		Cdn:     options.ExcludeCDN,
 	})
 	if err != nil {
 		return nil, err
@@ -170,8 +170,8 @@ func (r *Runner) RunEnumeration() error {
 
 	r.handleOutput()
 
-	// handle nmap
-	r.handleNmap()
+	// // handle nmap
+	// r.handleNmap()
 
 	return nil
 }
@@ -332,7 +332,7 @@ func (r *Runner) handleOutput() {
 				}
 			} else {
 				for port := range ports {
-					gologger.Silentf("%s:%d\n", host, port)
+					gologger.Silentf("%s:%d\n", hostIP, port)
 				}
 			}
 
@@ -341,7 +341,7 @@ func (r *Runner) handleOutput() {
 				if r.options.JSON {
 					err = WriteJSONOutput(host, hostIP, ports, file)
 				} else {
-					err = WriteHostOutput(host, ports, file)
+					err = WriteHostOutput(hostIP, ports, file)
 				}
 				if err != nil {
 					gologger.Errorf("Could not write results to file %s for %s: %s\n", output, host, err)

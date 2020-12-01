@@ -9,24 +9,24 @@ import (
 	"os"
 	"strings"
 
+	"github.com/003random/naabu/v2/pkg/ipranger"
+	"github.com/003random/naabu/v2/pkg/scan"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/naabu/v2/pkg/ipranger"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
 	"github.com/remeh/sizedwaitgroup"
 )
 
 func (r *Runner) Load() error {
 	r.scanner.State = scan.Init
 
-	// merge all target sources into a file
-	targetfile, err := r.mergeToFile()
-	if err != nil {
-		return err
-	}
-	r.targetsFile = targetfile
+	// // merge all target sources into a file
+	// targetfile, err := r.mergeToFile()
+	// if err != nil {
+	// 	return err
+	// }
+	// r.targetsFile = targetfile
 
 	// pre-process all targets (resolves all non fqdn targets to ip address)
-	err = r.PreProcessTargets()
+	err := r.PreProcessTargets()
 	if err != nil {
 		gologger.Warningf("%s\n", err)
 	}
@@ -91,7 +91,8 @@ func (r *Runner) mergeToFile() (string, error) {
 
 func (r *Runner) PreProcessTargets() error {
 	wg := sizedwaitgroup.New(r.options.Threads)
-	f, err := os.Open(r.targetsFile)
+	// f, err := os.Open(r.targetsFile)
+	f, err := os.Open(r.options.HostsFile)
 	if err != nil {
 		return err
 	}

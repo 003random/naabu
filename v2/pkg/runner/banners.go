@@ -5,9 +5,9 @@ import (
 	"net"
 	"strings"
 
+	"github.com/003random/naabu/v2/pkg/runas"
+	"github.com/003random/naabu/v2/pkg/scan"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/naabu/v2/pkg/runas"
-	"github.com/projectdiscovery/naabu/v2/pkg/scan"
 )
 
 const banner = `
