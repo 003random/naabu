@@ -1,4 +1,4 @@
-module github.com/projectdiscovery/naabu/v2
+module github.com/003random/naabu/v2
 
 go 1.14
 
@@ -22,5 +22,3 @@ require (
 	golang.org/x/sys v0.0.0-20201028094953-708e7fb298ac // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776
 )
-
-replace github.com/projectdiscovery/naabu v1.0.0 => github.com/003random/naabu v1.0.0
